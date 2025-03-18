@@ -1,1 +1,12 @@
-# Proiect_IC
++ # eBuild 
+-----------------------------------------------------
++ ## Problem solving:
+  
+
+
++ ## Tehnologii:
+  •	Frontend: Angular
+ 
+  •	Backend: Node.js
+ 
+  •	Database: Firebase
