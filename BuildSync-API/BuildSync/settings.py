@@ -122,3 +122,33 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Firebase Initialization
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+FIREBASE_CREDENTIALS = "secret/TEST_firebase_credentials.json"
+cred = credentials.Certificate(FIREBASE_CREDENTIALS)
+firebase_admin.initialize_app(cred, {
+    "storageBucket": "pdaw-a7aba.firebasestorage.app"
+})
+
+# Firestore client
+FIRESTORE_DB = firestore.client()
+
+#CORS settings
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]
+
+CORS_ALLOW_HEADERS = [
+    'authorization',
+    'content-type',
+    'x-csrf-token',
+    'accept',
+    'origin',
+    'user-agent',
+    'x-requested-with',
+]
