@@ -1,53 +1,63 @@
-+ # eConstruct 
------------------------------------------------------
-Plan de idee pentru aplicația Fullstack destinată firmelor de construcții
+# BuildSync
 
-1. Descriere generală
+## Descriere
 
-Aplicația va permite firmelor de construcții să își gestioneze lucrările și clienții într-un mod eficient. Firmele vor putea să vadă detalii despre lucrări, să monitorizeze progresul acestora și să urmărească istoricul prețurilor și plăților.
+**BuildSync** este o aplicație completă pentru gestionarea angajaților și clienților unei firme de construcții. Este construită folosind **MERN Stack** (MongoDB, Express.js, React, Node.js) și oferă o interfață prietenoasă atât pentru administratori, cât și pentru angajați.
 
-⸻
+## Module principale
 
-2. Tehnologii utilizate
-	•	Frontend: Angular + Node.js (pentru comunicarea cu backend-ul)
-	•	Backend: Django (Python, REST API)
-	•	Bază de date: Firebase (stocare date și autentificare)
+- **Autentificare:** Gestionarea loginului, logoutului și a accesului pe bază de rol (admin, angajat).
+- **Dashboard:** Vizualizare rapidă a statisticilor și navigare în aplicație.
+- **Management angajați:** Adăugare, editare și ștergere angajați.
+- **Șantiere (Construction Sites):** Organizarea angajaților în funcție de șantierul atribuit.
+- **Management clienți:** Gestionarea informațiilor despre clienți și asocieri cu proiectele.
+- **Management concedii:** Trimitere și aprobare cereri de concediu.
+- **Management salarii:** Înregistrare și vizualizare informații salariale.
+- **Prezență:** Înregistrare și verificare prezență angajați.
+- **Setări utilizator:** Modificare profil și parolă.
+- **Componente reutilizabile:** Protecție rutare și acces bazat pe rol.
 
-⸻
+## Instalare și rulare locală
 
-3. Funcționalități principale
+### 1. Clonează proiectul
 
-a) Autentificare și gestionare utilizatori
-	•	Firmele de construcții își creează conturi și se autentifică (Firebase Authentication)
-	•	Posibilitatea de a adăuga mai mulți utilizatori pentru aceeași firmă
+```bash
+git clone [url-ul-repo-ului]
+cd BuildSync
+```
 
-b) Managementul lucrărilor
-	•	Crearea, editarea și ștergerea lucrărilor
-	•	Atribuirea unei lucrări unui client
-	•	Monitorizarea stadiului lucrării (ex. “În execuție”, “Finalizată”)
+### 2. Instalează dependențele pentru frontend și backend
 
-c) Managementul clienților
-	•	Crearea, editarea și ștergerea clienților
-	•	Asocierea fiecărui client cu lucrările sale
+```bash
+# Backend
+cd BuildSync-API
+npm install
 
-d) Monitorizare financiară
-	•	Vizualizarea prețului inițial al lucrării
-	•	Înregistrarea modificărilor de preț
-	•	Istoric al plăților efectuate
+# Frontend
+cd ../BuildSync-CLIENT
+npm install
+```
 
-e) Dashboard și notificări
-	•	Dashboard cu statistici despre lucrări și clienți
-	•	Notificări pentru schimbările în stadiul unei lucrări
+### 3. Configurează fișierul `.env` în `BuildSync-API`
 
-⸻
+```env
+PORT=[Portul tău]
+MONGODB_URL=[URL-ul bazei de date MongoDB]
+JWT_SECRET=[Cheia secretă JWT]
+```
 
-4. Arhitectura aplicației
-	•	Frontend (Angular + Node.js)
-	•	UI interactiv pentru vizualizarea și gestionarea datelor
-	•	Interacțiune cu API-ul backend-ului (Django)
-	•	Backend (Django REST API)
-	•	Expune API-uri REST pentru gestionarea utilizatorilor, lucrărilor și clienților
-	•	Se ocupă de logica de afaceri (validări, calcule financiare)
-	•	Bază de date (Firebase)
-	•	Stocare a utilizatorilor, lucrărilor și clienților
-	•	Autentificare și gestionare permisiuni
+### 4. Pornește aplicația
+
+```bash
+# Pornește serverul backend
+cd BuildSync-API
+npm start
+
+# Pornește aplicația frontend
+cd ../BuildSync-CLIENT
+npm run dev
+```
+
+## Licență
+
+Acest proiect este licențiat sub licența MIT.
