@@ -27,18 +27,18 @@ import Chatbot from "./components/Chatbot/ChatBot";
 function App() {
   return (
     <BrowserRouter>
-      <Chatbot /> 
       <Routes>
         <Route path="/" element={<Navigate to="/admin-dashboard" />} />
-        
+
         <Route path="/login" element={<Login />} />
-        
+
         <Route
           path="/admin-dashboard"
           element={
             <PrivateRoutes>
               <RoleBaseRoutes requiredRole={["admin"]}>
                 <AdminDashboard />
+                <Chatbot />
               </RoleBaseRoutes>
             </PrivateRoutes>
           }
@@ -60,7 +60,7 @@ function App() {
           <Route path="attendance" element={<Attendance />} />
           <Route path="attendance-report" element={<AttendanceReport />} />
         </Route>
-  
+
         <Route
           path="/employee-dashboard"
           element={
