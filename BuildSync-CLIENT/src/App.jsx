@@ -12,6 +12,10 @@ import List from "./components/employee/List";
 import Add from "./components/employee/Add";
 import View from "./components/employee/View";
 import Edit from "./components/employee/Edit";
+import List1 from "./components/client/List";
+import View1 from "./components/client/View";
+import Add1 from "./components/client/Add";
+import Edit1 from "./components/client/Edit";
 import AddSalary from "./components/salary/Add";
 import ViewSalary from "./components/salary/View";
 import Summary from './components/EmployeeDashboard/Summary'
@@ -52,6 +56,10 @@ function App() {
           <Route path="employees/:id" element={<View />} />
           <Route path="employees/edit/:id" element={<Edit />} />
           <Route path="employees/salary/:id" element={<ViewSalary />} />
+          <Route path="clients" element={<List1 />} />
+          <Route path="add-client" element={<Add1 />} />
+          <Route path="clients/edit/:id" element={<Edit1 />} />
+          <Route path="clients/:id" element={<View1 />} />
           <Route path="salary/add" element={<AddSalary />} />
           <Route path="leaves" element={<Table />} />
           <Route path="leaves/:id" element={<Detail />} />

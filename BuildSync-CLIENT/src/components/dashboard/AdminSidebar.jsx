@@ -8,8 +8,9 @@ import {
   FaRegCalendarAlt,
   FaTachometerAlt,
   FaUsers,
+  FaUserTie,
 } from "react-icons/fa";
-import {AiOutlineFileText} from 'react-icons/ai'
+import { AiOutlineFileText } from 'react-icons/ai'
 
 const AdminSidebar = () => {
   return (
@@ -21,8 +22,7 @@ const AdminSidebar = () => {
         <NavLink
           to="/admin-dashboard"
           className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500 " : " "
+            `${isActive ? "bg-teal-500 " : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
           end
@@ -33,8 +33,7 @@ const AdminSidebar = () => {
         <NavLink
           to="/admin-dashboard/employees"
           className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500 " : " "
+            `${isActive ? "bg-teal-500 " : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
         >
@@ -42,10 +41,19 @@ const AdminSidebar = () => {
           <span>Employee</span>
         </NavLink>
         <NavLink
+          to="/admin-dashboard/clients"
+          className={({ isActive }) =>
+            `${isActive ? "bg-teal-500 " : " "
+            } flex items-center space-x-4 block py-2.5 px-4 rounded`
+          }
+        >
+          <FaUserTie />
+          <span>Client</span>
+        </NavLink>
+        <NavLink
           to="/admin-dashboard/departments"
           className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500 " : " "
+            `${isActive ? "bg-teal-500 " : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
         >
@@ -55,8 +63,7 @@ const AdminSidebar = () => {
         <NavLink
           to="/admin-dashboard/leaves"
           className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500 " : " "
+            `${isActive ? "bg-teal-500 " : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
         >
@@ -66,8 +73,7 @@ const AdminSidebar = () => {
         <NavLink
           to="/admin-dashboard/salary/add"
           className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500 " : " "
+            `${isActive ? "bg-teal-500 " : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
         >
@@ -77,8 +83,7 @@ const AdminSidebar = () => {
         <NavLink
           to={`/admin-dashboard/attendance`}
           className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500 " : " "
+            `${isActive ? "bg-teal-500 " : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
         >
@@ -88,8 +93,7 @@ const AdminSidebar = () => {
         <NavLink
           to={`/admin-dashboard/attendance-report`}
           className={({ isActive }) =>
-            `${
-              isActive ? "bg-teal-500 " : " "
+            `${isActive ? "bg-teal-500 " : " "
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
         >
