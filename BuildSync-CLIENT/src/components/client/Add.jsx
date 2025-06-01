@@ -93,52 +93,20 @@ const AddClient = () => {
             />
           </div>
 
-          {/* Date of Birth */}
+          {/* Entity Type */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
-              Date of Birth
-            </label>
-            <input
-              type="date"
-              name="dob"
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-              required
-            />
-          </div>
-
-          {/* Gender */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Gender
+              Entity Type
             </label>
             <select
-              name="gender"
+              name="entityType"
               onChange={handleChange}
               className="mt-1 p-2 w-full border border-gray-300 rounded-md"
               required
             >
-              <option value="">Select Gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          {/* Marital Status */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Marital Status
-            </label>
-            <select
-              name="maritalStatus"
-              onChange={handleChange}
-              className="mt-1 p-2 w-full border border-gray-300 rounded-md"
-              required
-            >
-              <option value="">Select Status</option>
-              <option value="single">Single</option>
-              <option value="married">Married</option>
+              <option value="">Select Entity Type</option>
+              <option value="natural">Natural Person</option>
+              <option value="legal">Legal Entity</option>
             </select>
           </div>
 

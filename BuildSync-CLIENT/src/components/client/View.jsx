@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const View = () => {
+const View1 = () => {
   const { id } = useParams();
   const [client, setClient] = useState(null);
 
@@ -59,28 +59,16 @@ const View = () => {
               </div>
 
               <div className="flex space-x-3 mb-5">
-                <p className="text-lg font-bold">Date of Birth:</p>
+                <p className="text-lg font-bold">Entity Type:</p>
                 <p className="font-medium">
-                  {new Date(client.dob).toLocaleDateString()}
+                  {client.entityType === "natural" ? "Natural Person" : "Legal Entity"}
                 </p>
               </div>
 
               <div className="flex space-x-3 mb-5">
-                <p className="text-lg font-bold">Gender:</p>
-                <p className="font-medium">{client.gender}</p>
+                <p className="text-lg font-bold">Phone:</p>
+                <p className="font-medium">{client.phone || "N/A"}</p>
               </div>
-
-              <div className="flex space-x-3 mb-5">
-                <p className="text-lg font-bold">Marital Status:</p>
-                <p className="font-medium">{client.maritalStatus}</p>
-              </div>
-
-              {client.phone && (
-                <div className="flex space-x-3 mb-5">
-                  <p className="text-lg font-bold">Phone:</p>
-                  <p className="font-medium">{client.phone}</p>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -91,4 +79,4 @@ const View = () => {
   );
 };
 
-export default View;
+export default View1;

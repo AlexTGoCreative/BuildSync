@@ -9,22 +9,24 @@ import clientRouter from './routes/client.js'
 import settingRouter from './routes/setting.js'
 import attendanceRouter from './routes/attendance.js'
 import dashboardRouter from './routes/dashboard.js'
+import workRequestRouter from './routes/workRequest.js'
 import connectToDatabase from './db/db.js'
 
 connectToDatabase() 
 const app = express() 
 app.use(cors())
 app.use(express.json())
-app.use(express.static('public/uploads'))
+app.use('/uploads', express.static('uploads'));
 app.use('/api/auth', authRouter)
 app.use('/api/department', departmentRouter)
 app.use('/api/employee', employeeRouter)
-app.use('/api/client', clientRouter);  
+app.use('/api/client', clientRouter)
 app.use('/api/salary', salaryRouter)
 app.use('/api/leave', leaveRouter)
 app.use('/api/setting', settingRouter)
 app.use('/api/attendance', attendanceRouter)
 app.use('/api/dashboard', dashboardRouter)
+app.use('/api/work-request', workRequestRouter)
 
 app.listen(process.env.PORT, () => {
     console.log(`Server is Running on port ${process.env.PORT}`)

@@ -5,7 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 const EditClient = () => {
   const [client, setClient] = useState({
     name: "",
-    maritalStatus: ""
+    email: "",
+    phone: "",
+    entityType: ""
   });
 
   const navigate = useNavigate();
@@ -24,7 +26,9 @@ const EditClient = () => {
           const c = response.data.client;
           setClient({
             name: c.userId?.name || c.name,
-            maritalStatus: c.maritalStatus || ""
+            email: c.userId?.email || c.email,
+            phone: c.phone || "",
+            entityType: c.entityType || ""
           });
         }
       } catch (error) {
@@ -35,7 +39,7 @@ const EditClient = () => {
     };
 
     fetchClient();
-  }, []);
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -84,19 +88,47 @@ const EditClient = () => {
           />
         </div>
 
-        {/* Marital Status */}
+        {/* Email */}
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700">Marital Status</label>
-          <select
-            name="maritalStatus"
+          <label className="block text-sm font-medium text-gray-700">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={client.email}
             onChange={handleChange}
-            value={client.maritalStatus}
+            placeholder="Email Address"
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+            required
+          />
+        </div>
+
+        {/* Phone */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Phone</label>
+          <input
+            type="tel"
+            name="phone"
+            value={client.phone}
+            onChange={handleChange}
+            placeholder="Phone Number"
+            className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
+            required
+          />
+        </div>
+
+        {/* Entity Type */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">Entity Type</label>
+          <select
+            name="entityType"
+            onChange={handleChange}
+            value={client.entityType}
             className="mt-1 p-2 block w-full border border-gray-300 rounded-md"
             required
           >
-            <option value="">Select Status</option>
-            <option value="single">Single</option>
-            <option value="married">Married</option>
+            <option value="">Select Entity Type</option>
+            <option value="natural">Natural Person</option>
+            <option value="legal">Legal Entity</option>
           </select>
         </div>
 

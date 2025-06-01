@@ -1,9 +1,12 @@
+import express from "express";
 import multer from "multer";
 import Client from "../models/Client.js";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import path from "path";
 import fs from "fs";
+
+const router = express.Router();
 
 // Configure Multer storage
 const storage = multer.diskStorage({
@@ -27,9 +30,7 @@ const addClient = async (req, res) => {
     const {
       name,
       email,
-      dob,
-      gender,
-      maritalStatus,
+      entityType,
       password,
       role = "client", // Default to "client" if not provided
       phone, // Include phone field from frontend
@@ -61,9 +62,7 @@ const addClient = async (req, res) => {
     // Create new client
     const newClient = new Client({
       userId: savedUser._id,
-      dob,
-      gender,
-      maritalStatus,
+      entityType,
       phone, // Include if Client schema has a phone field
       image: req.file ? req.file.filename : "",
     });
@@ -124,7 +123,7 @@ const getClient = async (req, res) => {
 const updateClient = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, maritalStatus } = req.body;
+    const { name, email, phone, entityType } = req.body;
 
     const client = await Client.findById(id);
     if (!client) {
@@ -140,8 +139,8 @@ const updateClient = async (req, res) => {
         .json({ success: false, error: "User not found" });
     }
 
-    const updatedUser = await User.findByIdAndUpdate(client.userId, { name });
-    const updatedClient = await Client.findByIdAndUpdate(id, { maritalStatus });
+    const updatedUser = await User.findByIdAndUpdate(client.userId, { name, email, phone });
+    const updatedClient = await Client.findByIdAndUpdate(id, { entityType, phone });
 
     if (!updatedUser || !updatedClient) {
       return res
@@ -157,5 +156,47 @@ const updateClient = async (req, res) => {
   }
 };
 
+// Delete client
+const deleteClient = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the client
+    const client = await Client.findById(id);
+    if (!client) {
+      return res
+        .status(404)
+        .json({ success: false, error: "Client not found" });
+    }
+
+    // Find the associated user
+    const user = await User.findById(client.userId);
+    if (!user) {
+      return res
+        .status(404)
+        .json({ success: false, error: "User not found" });
+    }
+
+    // Delete the profile image from the server if it exists
+    if (client.image) {
+      const imagePath = path.join("public/uploads", client.image);
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath); // Delete the image file
+      }
+    }
+
+    // Delete the client and user records
+    await Client.findByIdAndDelete(id);
+    await User.findByIdAndDelete(client.userId);
+
+    return res.status(200).json({ success: true, message: "Client deleted" });
+  } catch (error) {
+    console.log(error);
+    return res
+      .status(500)
+      .json({ success: false, error: "Delete client server error" });
+  }
+};
+
 // Export the functions
-export { addClient, getClients, getClient, updateClient, upload };
+export { addClient, getClients, getClient, updateClient, deleteClient, upload };

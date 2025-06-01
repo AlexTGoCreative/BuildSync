@@ -3,9 +3,8 @@ const { Schema } = mongoose;
 
 const clientSchema = new Schema({
   userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
-  dob: { type: Date },
-  gender: { type: String, enum: ["male", "female", "other"] },
-  maritalStatus: { type: String, enum: ["single", "married"] },
+  entityType: { type: String, enum: ["natural", "legal"], required: true },
+  phone: { type: String }, // Added phone field, optional
   image: { type: String }, // path to image in storage, optional
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },

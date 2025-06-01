@@ -55,9 +55,42 @@ export const getClientsByGroup = async (groupId) => {
   return clients;
 };
 
-// Butoane pentru fiecare client, fără delete
+// Funcție pentru ștergerea unui client
+export const deleteClient = async (clientId) => {
+  try {
+    const response = await axios.delete(
+      `http://localhost:5000/api/client/${clientId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    );
+    if (response.data.success) {
+      alert("Client deleted successfully!");
+      return true;
+    }
+  } catch (error) {
+    if (error.response && !error.response.data.success) {
+      alert(error.response.data.error);
+    }
+    return false;
+  }
+};
+
+// Butoane pentru fiecare client, cu buton de delete adăugat
 export const ClientButtons = ({ Id }) => {
   const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    if (window.confirm("Are you sure you want to delete this client?")) {
+      const success = await deleteClient(Id);
+      if (success) {
+        // Reîncarcă pagina sau actualizează lista clienților
+        window.location.reload(); // Alternativ, poți folosi un mecanism de stare pentru a actualiza lista
+      }
+    }
+  };
 
   return (
     <div className="flex space-x-3">
@@ -72,6 +105,12 @@ export const ClientButtons = ({ Id }) => {
         onClick={() => navigate(`/admin-dashboard/clients/edit/${Id}`)}
       >
         Edit
+      </button>
+      <button
+        className="px-3 py-1 bg-red-600 text-white"
+        onClick={handleDelete}
+      >
+        Delete
       </button>
     </div>
   );
