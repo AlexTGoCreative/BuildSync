@@ -5,6 +5,8 @@ import { useAuth } from "../../context/authContext";
 
 const WorkList = () => {
   const [workRequests, setWorkRequests] = useState(null);
+  const [selectedReason, setSelectedReason] = useState("");
+  const [showReasonModal, setShowReasonModal] = useState(false);
   let sno = 1;
   const { id } = useParams();
   const { user } = useAuth();
@@ -32,6 +34,11 @@ const WorkList = () => {
   useEffect(() => {
     fetchWorkRequests();
   }, []);
+
+  const handleViewReason = (reason) => {
+    setSelectedReason(reason || "No reason provided");
+    setShowReasonModal(true);
+  };
 
   if (!workRequests) {
     return <div>Loading...</div>;
@@ -66,6 +73,7 @@ const WorkList = () => {
             <th className="px-6 py-3">From</th>
             <th className="px-6 py-3">To</th>
             <th className="px-6 py-3">Status</th>
+            <th className="px-6 py-3">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -83,10 +91,38 @@ const WorkList = () => {
                 {new Date(request.endDate).toLocaleDateString()}
               </td>
               <td className="px-6 py-3">{request.status}</td>
+              <td className="px-6 py-3">
+                {request.status === "Rejected" && (
+                  <button
+                    className="px-3 py-1 bg-teal-600 text-white"
+                    onClick={() => handleViewReason(request.rejectionReason)}
+                  >
+                    View
+                  </button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      {/* Rejection Reason Modal */}
+      {showReasonModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h3 className="text-xl font-semibold mb-4">Rejection Reason</h3>
+            <p className="text-gray-700 mb-4">{selectedReason}</p>
+            <div className="flex justify-end">
+              <button
+                className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
+                onClick={() => setShowReasonModal(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

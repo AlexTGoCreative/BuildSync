@@ -52,7 +52,7 @@ export const WorkRequestButtons = ({ Id }) => {
 
   return (
     <button
-      className="px-4 py-1 bg-teal-500 rounded text-white hover:bg-teal-600"
+      className="px-3 py-1 bg-teal-600 text-white"
       onClick={() => handleView(Id)}
     >
       View

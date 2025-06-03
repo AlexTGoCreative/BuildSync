@@ -9,12 +9,13 @@ import {
   FaTachometerAlt,
   FaUsers,
   FaUserTie,
+  FaTools,
 } from "react-icons/fa";
 import { AiOutlineFileText } from 'react-icons/ai'
 
 const AdminSidebar = () => {
   return (
-    <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64">
+    <div className="bg-gray-800 text-white h-screen fixed left-0 top-0 bottom-0 space-y-2 w-64 select-none">
       <div className="bg-teal-600 h-12 flex items-center justify-center">
         <h3 className="text-2xl text-center font-pacific">BuildSync</h3>
       </div>
@@ -78,8 +79,8 @@ const AdminSidebar = () => {
             } flex items-center space-x-4 block py-2.5 px-4 rounded`
           }
         >
-          <FaCalendarAlt />
-          <span>Work</span>
+          <FaTools />
+          <span>Work request</span>
         </NavLink>
 
         <NavLink

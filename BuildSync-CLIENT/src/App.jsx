@@ -20,6 +20,7 @@ import EditClient from "./components/client/Edit";
 import AddSalary from "./components/salary/Add";
 import ViewSalary from "./components/salary/View";
 import Summary from './components/EmployeeDashboard/Summary'
+import Summary1 from './components/ClientDashboard/Summary'
 import LeaveList from './components/leave/List'
 import AddLeave from './components/leave/Add'
 import Setting from "./components/EmployeeDashboard/Setting";
@@ -105,7 +106,7 @@ function App() {
             </PrivateRoutes>
           }
         >
-          <Route index element={<Summary />} />
+          <Route index element={<Summary1 />} />
           <Route path="profile/:id" element={<View1 />} />
           <Route path="setting" element={<Setting1 />} />
           <Route path="work/:id" element={<WorkList />} />

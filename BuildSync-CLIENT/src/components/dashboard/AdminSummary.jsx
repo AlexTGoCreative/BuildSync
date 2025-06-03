@@ -28,18 +28,18 @@ const AdminSummary = () => {
         if(error.response) {
           alert(error.response.data.error)
         }
-        console.log(error.messsage)
+        console.log(error.message)
       }
     }
     fetchSummary()
   }, [])
 
   if(!summary) {
-    return <div> Loading...</div>
+    return <div>Loading...</div>
   }
 
   return (
-    <div className="p-6">
+    <div className="min-h-screen bg-gray-100 flex flex-col p-6 select-none">
       <h3 className="text-2xl font-bold">Dashboard Overview</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
         <SummaryCard
@@ -64,7 +64,6 @@ const AdminSummary = () => {
 
       <div className="mt-12">
         <h4 className="text-center text-2xl font-bold">Leave Details</h4>
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           <SummaryCard
             icon={<FaFileAlt />}
@@ -88,6 +87,36 @@ const AdminSummary = () => {
             icon={<FaTimesCircle />}
             text="Leave Rejected"
             number={summary.leaveSummary.rejected}
+            color="bg-red-600"
+          />
+        </div>
+      </div>
+
+      <div className="mt-12">
+        <h4 className="text-center text-2xl font-bold">Work Request Details</h4>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <SummaryCard
+            icon={<FaFileAlt />}
+            text="Work Requests Applied"
+            number={summary.workRequestSummary.appliedFor}
+            color="bg-teal-600"
+          />
+          <SummaryCard
+            icon={<FaCheckCircle />}
+            text="Work Requests Approved"
+            number={summary.workRequestSummary.approved}
+            color="bg-green-600"
+          />
+          <SummaryCard
+            icon={<FaHourglassHalf />}
+            text="Work Requests Pending"
+            number={summary.workRequestSummary.pending}
+            color="bg-yellow-600"
+          />
+          <SummaryCard
+            icon={<FaTimesCircle />}
+            text="Work Requests Rejected"
+            number={summary.workRequestSummary.rejected}
             color="bg-red-600"
           />
         </div>

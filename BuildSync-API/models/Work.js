@@ -6,11 +6,13 @@ const workRequestSchema = new Schema({
   name: { type: String, required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
-  status:{
+  details: { type: String },
+  status: {
     type: String,
     enum: ["Pending", "Approved", "Rejected"],
     default: "Pending",
   },
+  rejectionReason: { type: String },
   appliedAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now },
 });

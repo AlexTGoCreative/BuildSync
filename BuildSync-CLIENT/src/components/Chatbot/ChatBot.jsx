@@ -62,17 +62,19 @@ const Chatbot = () => {
 
       <div className="chatbot-popup">
         <div className="chat-header">
-          <div className="header-info">
-            <ChatbotIcon />
-            <h2 className="logo-text">Benny</h2>
-          </div>
-          <div className="header-buttons">
-            <button onClick={() => setChatHistory([])} className="material-symbols-rounded">
-              refresh
-            </button>
-            <button onClick={() => setShowChatbot((prev) => !prev)} className="material-symbols-rounded">
-              keyboard_arrow_down
-            </button>
+          <div className="inner-header">
+            <div className="header-info">
+              <ChatbotIcon />
+              <h2 className="logo-text">Benny</h2>
+            </div>
+            <div className="header-buttons">
+              <button onClick={() => setChatHistory([])} className="material-symbols-rounded">
+                refresh
+              </button>
+              <button onClick={() => setShowChatbot((prev) => !prev)} className="material-symbols-rounded">
+                keyboard_arrow_down
+              </button>
+            </div>
           </div>
         </div>
 

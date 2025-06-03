@@ -13,6 +13,9 @@
 /BuildSync-API/.env
 /BuildSync-API/.env.*.local
 
+# Ignoră conținutul din uploads
+/BuildSync-API/public/uploads/*
+
 # === COMUNE ===
 .DS_Store
 Thumbs.db
